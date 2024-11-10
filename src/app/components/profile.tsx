@@ -18,7 +18,7 @@ export default function Profile() {
     <>
       Not signed in <br />
       {/* <Button onClick={() => signIn()}>Sign in</Button> */}
-      <Button onClick={() => signIn('github')}>Sign in</Button>   
+      <Button onClick={() => signIn('github')}>Sign in</Button>
       {/* SignIn using Github directly */}
     </>
   );
