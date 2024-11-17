@@ -18,14 +18,14 @@ const authOptions = {
             clientSecret: GITHUB_CLIENT_SECRET,
         })
     ],
-    callbacks: {
-        async session({ session, user }: any) {
-            if (session && user) {
-                session.user.id = user.id;
-            }
-            return session;
-        }
-    }
+    // callbacks: {
+    //     async session({ session, user }: any) {
+    //         if (session && user) {
+    //             session.user.id = user.id;
+    //         }
+    //         return session;
+    //     }
+    // }
 };
 
 export default NextAuth(authOptions);
