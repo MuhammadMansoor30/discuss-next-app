@@ -3,6 +3,7 @@ import { Input, Button, Textarea, Popover, PopoverContent, PopoverTrigger } from
 import { createTopic } from "@/actions/create-topic";
 import { useSession } from "next-auth/react";
 import { useActionState } from "react";
+import FormButton from "../common/form-button";
 
 const TopicsCreateForm = () => {
     const { data: session } = useSession();
@@ -26,7 +27,7 @@ const TopicsCreateForm = () => {
                                     {formState.errors._form?.join(', ')}
                                 </div>) : null
                             }
-                            <Button type="submit">Submit</Button>
+                            <FormButton>Submit</FormButton>
                         </div>
                     </form>
                 </PopoverContent>
