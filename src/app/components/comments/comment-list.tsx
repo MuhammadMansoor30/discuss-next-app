@@ -1,12 +1,14 @@
-import CommentShow from "@/components/comments/comment-show";
+import CommentShow from "./comment-show";
+import type { CommentWithAuthor } from "@/db/queries/comments";
 
-interface CommentListProps {}
+interface CommentListProps {
+  fetchData: () => Promise<CommentWithAuthor[]>,
+}; 
 
-// TODO: Get a list of comments from somewhere
-export default function CommentList({}: CommentListProps) {
-  const topLevelComments = comments.filter(
-    (comment) => comment.parentId === null
-  );
+export default async function CommentList({fetchData}: CommentListProps) {
+  const comments = await fetchData();
+
+  const topLevelComments = comments.filter((comment) => comment.parentId === null);
   const renderedComments = topLevelComments.map((comment) => {
     return (
       <CommentShow
@@ -24,3 +26,9 @@ export default function CommentList({}: CommentListProps) {
     </div>
   );
 }
+
+
+// NOTES (SEC 8):
+// Creating the Commnets List page component to list down the comments for the given post.
+// The functionality is sam eas that of the post-list component. More info is mentioned in Notes section there.
+// Here addition is that we are alos passing the commnets donw as props to the commneys Show COmponent where ther will actually be rendered and shown.
