@@ -17,11 +17,8 @@ interface CreateCommentFormState {
   success?: boolean;
 }
 
-export async function createComment(
-  { postId, parentId }: { postId: string; parentId?: string },
-  formState: CreateCommentFormState,
-  formData: FormData
-): Promise<CreateCommentFormState> {
+export async function createComment({ postId, parentId, userId }: { postId: string; parentId?: string; userId: string },
+  formState: CreateCommentFormState, formData: FormData): Promise<CreateCommentFormState> {
   const result = createCommentSchema.safeParse({
     content: formData.get("content"),
   });
@@ -39,7 +36,7 @@ export async function createComment(
         content: result.data.content,
         postId: postId,
         parentId: parentId,
-        userId: 'session.user.id',
+        userId: userId,
       },
     });
   } catch (err) {
@@ -76,3 +73,8 @@ export async function createComment(
     success: true,
   };
 }
+
+
+// NOTES (SEC 8):
+// Creating the create-comment.ts action file which is similar to thet of create-post and create-topic file.
+// In the main createComments function the 1st arugemnts is the data passed using the bind function which binds the params to the new fucntion. We can either get them using theis object notation to using simple comma separated as done in the create-post file.
